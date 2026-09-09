@@ -24,6 +24,8 @@ class MyTestCase(unittest.TestCase):
         self.test_card.date = "09/08/2026"
         self.assertEqual(self.test_card.date, "09/08/2026")
 
+    def test_card_price(self):
+        self.assertEqual(self.test_card.price, 0)
 
 if __name__ == '__main__':
     unittest.main()

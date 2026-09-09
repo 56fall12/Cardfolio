@@ -39,3 +39,7 @@ class Card:
     @date.setter
     def date(self, date: str):
         self._date = date
+
+    @property
+    def price(self):
+        return self._price
