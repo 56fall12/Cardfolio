@@ -7,21 +7,32 @@ import requests
 def getPrice(id: str):
     '''
     take in a product ID and return the newest market price near mint for it and the date
-    :return: dict
+    :return: Card
     '''
 
     product_id: str = id
 
     url : str = f"https://infinite-api.tcgplayer.com/price/history/{product_id}/detailed?range=quarter"
-
+    print(url)
 
 
     response = requests.get(url)
     data = response.json()
-
+    condition_results: list[dict] = []
     results: list = data['result']
-    prices: dict = results[0]['buckets'][0]
-    all_prices: dict = results[0]['buckets']
+
+    for i in results:
+        if i.get("condition") == "Near Mint":
+            condition_results = i
+            break
+        elif i.get("condition") == "Unopened":
+            condition_results = i
+            break
+
+    prices: dict = condition_results.get('buckets')[0]
+    all_prices: dict = condition_results['buckets']
+
+    print(all_prices)
 
     newest_price: int = prices.get('marketPrice')
     date: str = prices.get('bucketStartDate')
@@ -29,7 +40,7 @@ def getPrice(id: str):
     last_sold_date: str = ""
 
     for i in all_prices:
-        if i.get('quantitySold') > 0:
+        if int(i.get('quantitySold')) > 0:
             last_sold_price = i.get('marketPrice')
             last_sold_date = i.get('bucketStartDate')
 
