@@ -20,3 +20,22 @@ class Card:
             raise ValueError("Quantity cannot be less than 0")
         else:
             self._quantity = value
+
+    @property
+    def id(self):
+        return self._id
+
+    @id.setter
+    def id(self, value):
+        if value < 0:
+            raise ValueError("ID cannot be less than 0")
+        else:
+            self._id = value
+
+    @property
+    def date(self):
+        return self._date
+
+    @date.setter
+    def date(self, date: str):
+        self._date = date
