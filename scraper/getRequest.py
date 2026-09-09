@@ -1,5 +1,5 @@
 from xmlrpc.client import DateTime
-
+from card import Card
 import requests
 #we wanna get the sku and then we can pass that into the get market price request nodders
 
@@ -18,12 +18,18 @@ def getPrice(id: str):
 
     response = requests.get(url)
     data = response.json()
+
     results: list = data['result']
     prices: dict = results[0]['buckets'][0]
-    newestPrice: int = prices.get('marketPrice')
+    all_prices: dict = results[0]['buckets']
+
+    newest_price: int = prices.get('marketPrice')
     date: str = prices.get('bucketStartDate')
-    info: dict[str, int | str] = {
-        'price': newestPrice,
-        'date': date
-    }
+    last_sold_price:float = 0
+
+    for i in all_prices:
+        if i.get('quantitySold') > 0:
+            last_sold_price = i.get('marketPrice')
+
+    info: Card = Card(newest_price, 0, last_sold_price, date, int(id))
     return info
