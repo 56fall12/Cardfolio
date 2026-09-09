@@ -1,13 +1,14 @@
 
 
 class Card:
-    def __init__(self, price: float, quantity: int, last_bought_price: float,  date: str, id: int):
+    def __init__(self, price: float, quantity: int, last_bought_price: float,  date: str, id: int, last_sold_date: str):
         self._price: float= price
         self._quantity: int= quantity
         self._last_bought_price: float = last_bought_price
         self._current_price: float = 0
         self._date: str = date
-        self._id = id
+        self._id:int = id
+        self._last_sold_date: str = last_sold_date
 
     @property
     def quantity(self):

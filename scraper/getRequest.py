@@ -26,10 +26,12 @@ def getPrice(id: str):
     newest_price: int = prices.get('marketPrice')
     date: str = prices.get('bucketStartDate')
     last_sold_price:float = 0
+    last_sold_date: str = ""
 
     for i in all_prices:
         if i.get('quantitySold') > 0:
             last_sold_price = i.get('marketPrice')
+            last_sold_date = i.get('bucketStartDate')
 
-    info: Card = Card(newest_price, 0, last_sold_price, date, int(id))
+    info: Card = Card(newest_price, 0, last_sold_price, date, int(id), last_sold_date)
     return info
