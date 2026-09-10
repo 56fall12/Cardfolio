@@ -13,7 +13,6 @@ def getPrice(id: str):
     product_id: str = id
 
     url : str = f"https://infinite-api.tcgplayer.com/price/history/{product_id}/detailed?range=quarter"
-    print(url)
 
 
     response = requests.get(url)
@@ -32,7 +31,6 @@ def getPrice(id: str):
     prices: dict = condition_results.get('buckets')[0]
     all_prices: dict = condition_results['buckets']
 
-    print(all_prices)
 
     newest_price: int = prices.get('marketPrice')
     date: str = prices.get('bucketStartDate')
