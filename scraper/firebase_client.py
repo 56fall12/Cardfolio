@@ -12,4 +12,7 @@ def write_to_database(card: Card):
     today_price: dict = {
         "price" : card.price
     }
+    db.collection("cards").document(str(card.id)).set({
+        "product_id": card.id,
+    }, merge = True)
     db.collection("cards").document(str(card.id)).collection("price_history").document(card.date).set(today_price, merge = True)
