@@ -1,16 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CollectionPage extends StatefulWidget {
   const CollectionPage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -21,20 +14,30 @@ class CollectionPage extends StatefulWidget {
 class _CollectionPageState extends State<CollectionPage> {
   @override
   Widget build(BuildContext context) {
-    const title = "Collection";
-    return MaterialApp(
-      title: title,
-      home: Scaffold(
-        appBar: AppBar(title: const Text(title)),
-        body: ListView(
-          children: const <Widget>[
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Dfsdfsf")),
-            ListTile(leading: Icon(Icons.circle), title: Text("sdfsdfdsdf")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.title)),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection('cards').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('No cards yet'));
+          }
+       
+          final cards = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: cards.length,
+            itemBuilder: (context, index) {
+              final card = cards[index];
+              return ListTile(title: Text(card.id));
+            },
+          );
+        },
       ),
     );
   }
