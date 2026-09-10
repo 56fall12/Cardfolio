@@ -5,3 +5,4 @@ __pycache__/
 .env
 firebase-key.json
 pokemon-card-collection-f9e21-firebase-adminsdk-fbsvc-41460bda94.json
+scraper/pokemon-card-collection-f9e21-firebase-adminsdk-fbsvc-41460bda94.json

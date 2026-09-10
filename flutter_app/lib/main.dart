@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_app/widget_tree.dart';
 import 'collectionPage.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
@@ -32,7 +36,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurpleAccent),
       ),
-      home: const CollectionPage(title: 'Card Collection'),
+      home: const WidgetTree(),
     );
   }
 }

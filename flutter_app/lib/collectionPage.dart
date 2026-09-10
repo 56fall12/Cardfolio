@@ -30,8 +30,8 @@ class _CollectionPageState extends State<CollectionPage> {
           children: const <Widget>[
             ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
             ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
+            ListTile(leading: Icon(Icons.circle), title: Text("Dfsdfsf")),
+            ListTile(leading: Icon(Icons.circle), title: Text("sdfsdfdsdf")),
             ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
           ],
         ),

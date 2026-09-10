@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "70964143073",
+    "project_id": "pokemon-card-collection-f9e21",
+    "storage_bucket": "pokemon-card-collection-f9e21.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70964143073:android:95a58dca5fd223540d28a0",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70964143073-ajcnc3fj4hknfpu83jsho4gnjoi4g2ov.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApGwoAvDCXD7OHCk-JvgOakGr2dVJoW5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70964143073-ajcnc3fj4hknfpu83jsho4gnjoi4g2ov.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "70964143073-eflvo3sb8geo6asphr1sgc8beugm2vck.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
