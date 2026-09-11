@@ -4,16 +4,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app/addCardPage.dart';
 import 'package:flutter_app/auth.dart';
 import 'package:flutter_app/settings.dart';
+import 'package:flutter_app/card_detail.dart';
+
+
 
 class CollectionPage extends StatefulWidget {
   const CollectionPage({super.key, required this.title});
-
 
   final String title;
 
   @override
   State<CollectionPage> createState() => _CollectionPageState();
 }
+
 class _CollectionPageState extends State<CollectionPage> {
   @override
   Widget build(BuildContext context) {
@@ -24,13 +27,13 @@ class _CollectionPageState extends State<CollectionPage> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () async {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Setting(title: 'Settings'),
-              ),
-            );
-          },
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Setting(title: 'Settings'),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -51,11 +54,25 @@ class _CollectionPageState extends State<CollectionPage> {
             return const Center(child: Text('No cards yet'));
           }
           final cards = snapshot.data!.docs;
+          
           return ListView.builder(
             itemCount: cards.length,
             itemBuilder: (context, index) {
               final card = cards[index];
-              return ListTile(title: Text(card.id));
+
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CardDetail(cardId: card.id),
+                    ),
+                  );
+                },
+                child: ListTile(
+                  title: Text(card.id),
+                ),
+              );
             },
           );
         },
@@ -64,7 +81,9 @@ class _CollectionPageState extends State<CollectionPage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const addCardPage()),
+            MaterialPageRoute(
+              builder: (context) => const addCardPage(), 
+            ),
           );
         },
         child: const Icon(Icons.add),
