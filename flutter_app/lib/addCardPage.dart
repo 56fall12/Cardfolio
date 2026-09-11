@@ -17,6 +17,7 @@ class addCardPage extends StatefulWidget {
 
 class _addCardPageState extends State<addCardPage> {
   String? errorMessage = ' ';
+  String? successMessage = ' ';
   final TextEditingController _controllerID = TextEditingController();
   
   Widget _title(){
@@ -35,6 +36,13 @@ class _addCardPageState extends State<addCardPage> {
       );
   }
 
+  Widget _successMessage(){
+    if (successMessage == null){
+      return const SizedBox.shrink();
+    }
+    return Text(successMessage!);
+  }
+
    Widget _errorMessage() {
     if (errorMessage == null) {
       return const SizedBox.shrink(); 
@@ -43,6 +51,11 @@ class _addCardPageState extends State<addCardPage> {
   }
   Widget _submitButton(){
     return ElevatedButton(onPressed: () async{
+      setState((){
+        errorMessage = null;
+        successMessage = null;
+      }
+      );
       final id = _controllerID.text;
       final doc = await FirebaseFirestore.instance.collection('cards').doc(id).get();
 
@@ -50,10 +63,10 @@ class _addCardPageState extends State<addCardPage> {
       if (!doc.exists) {
         setState(() {
           errorMessage = 'Unable to find card id';
+          successMessage = null;
         });
         return;
       }
-
     await FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
@@ -62,12 +75,12 @@ class _addCardPageState extends State<addCardPage> {
       .set({
         'addedDate' : DateTime.now().toString(),
       });
-    setState((){
-      errorMessage = null;
-    });
-
-    Navigator.pop(context);
-
+      if (!mounted) return;
+      setState(() {
+        errorMessage = null;
+        successMessage = 'Added Card';
+      });
+  //    Navigator.pop(context);
     }, child: const Text('Submit Card ID'),);
   }
 
@@ -77,6 +90,12 @@ class _addCardPageState extends State<addCardPage> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+          ),
         title: _title(),
       ),
       body: Container(
@@ -89,6 +108,7 @@ class _addCardPageState extends State<addCardPage> {
           children: <Widget>[
             _entryField('Enter ID here', _controllerID),
             _errorMessage(),
+            _successMessage(),
             _submitButton(),
           ],
           ),
