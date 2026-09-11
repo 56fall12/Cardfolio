@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/auth.dart';
+import 'package:flutter_app/remove_card_page.dart';
 
 class Setting extends StatelessWidget {
   const Setting({super.key});
@@ -80,6 +81,21 @@ class Setting extends StatelessWidget {
                   leading: Icon(Icons.info_outline, color: colorScheme.primary),
                   title: const Text('App'),
                   subtitle: const Text('Cardfolio · TCG collection tracker'),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: Icon(Icons.delete_outline, color: colorScheme.error),
+                  title: const Text('Remove a card'),
+                  subtitle: const Text('Delete from collection or watchlist'),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RemoveCardPage(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
