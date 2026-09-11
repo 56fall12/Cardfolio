@@ -8,7 +8,6 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 def write_to_database(card: Card):
-
     today_price: dict = {
         "price" : card.price
     }

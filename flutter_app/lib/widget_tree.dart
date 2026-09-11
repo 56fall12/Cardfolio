@@ -1,6 +1,6 @@
 import 'package:flutter_app/auth.dart';
 import 'package:flutter_app/collectionPage.dart';
-import 'package:flutter_app/home_page.dart';
+import 'package:flutter_app/homePage.dart';
 import 'package:flutter_app/login_register_page.dart';
 import 'package:flutter/material.dart';
 import 'collectionPage.dart';
