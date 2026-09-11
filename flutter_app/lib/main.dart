@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_app/addCardPage.dart';
+import 'package:flutter_app/branding.dart';
 import 'package:flutter_app/widget_tree.dart';
-import 'collectionPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,46 +13,57 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurpleAccent),
-      ),
-      home: const WidgetTree(),
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: AppBrand.seed,
+      brightness: Brightness.light,
     );
-  }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  
-
-  @override
-  Widget build(BuildContext context) {
-    const title = "Collection";
     return MaterialApp(
-      title: title,
-      home: Scaffold(
-        appBar: AppBar(title: const Text(title)),
-        body: ListView(
-          children: const <Widget>[
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-            ListTile(leading: Icon(Icons.circle), title: Text("Sylveon")),
-          ],
+      title: AppBrand.name,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: colorScheme,
+        appBarTheme: AppBarTheme(
+          centerTitle: false,
+          elevation: 0,
+          backgroundColor: colorScheme.surface,
+          foregroundColor: colorScheme.onSurface,
+        ),
+        cardTheme: CardThemeData(
+          elevation: 0,
+          color: colorScheme.surfaceContainerLow,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        navigationBarTheme: NavigationBarThemeData(
+          elevation: 0,
+          indicatorShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          elevation: 2,
         ),
       ),
+      home: const WidgetTree(),
     );
   }
 }

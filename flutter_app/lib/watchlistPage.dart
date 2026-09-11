@@ -5,21 +5,21 @@ import 'package:flutter_app/branding.dart';
 import 'package:flutter_app/card_detail.dart';
 import 'package:flutter_app/card_list_tile.dart';
 
-class CollectionPage extends StatefulWidget {
-  const CollectionPage({super.key});
+class WatchlistPage extends StatefulWidget {
+  const WatchlistPage({super.key});
 
   @override
-  State<CollectionPage> createState() => _CollectionPageState();
+  State<WatchlistPage> createState() => _WatchlistPageState();
 }
 
-class _CollectionPageState extends State<CollectionPage> {
+class _WatchlistPageState extends State<WatchlistPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection('collection')
+          .collection('watchlist')
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
@@ -30,8 +30,9 @@ class _CollectionPageState extends State<CollectionPage> {
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
           return const EmptyCardsState(
-            message: 'No cards yet',
-            detail: 'Tap Add card to save something you own.',
+            icon: Icons.visibility_outlined,
+            message: 'Nothing on your watchlist',
+            detail: 'Tap Watch card to follow a price.',
           );
         }
         final cards = snapshot.data!.docs;
@@ -43,7 +44,7 @@ class _CollectionPageState extends State<CollectionPage> {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
                 child: Text(
-                  '${cards.length} ${cards.length == 1 ? 'card' : 'cards'} in your binder',
+                  'Watching ${cards.length} ${cards.length == 1 ? 'card' : 'cards'}',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),

@@ -1,9 +1,7 @@
 import 'package:flutter_app/auth.dart';
-import 'package:flutter_app/collectionPage.dart';
-import 'package:flutter_app/homePage.dart';
 import 'package:flutter_app/login_register_page.dart';
+import 'package:flutter_app/main_navigation.dart';
 import 'package:flutter/material.dart';
-import 'collectionPage.dart';
 
 
 class WidgetTree extends StatefulWidget{
@@ -20,7 +18,7 @@ class _WidgetTreeState extends State<WidgetTree>{
       stream: Auth().authStateChanges,
       builder: (context, snapshot){
         if (snapshot.hasData){
-          return CollectionPage(title: 'Collection');
+          return const MainNavigation();
         } else{
           return const LoginPage();
         }
