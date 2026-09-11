@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurpleAccent),
       ),
-      home: const addCardPage(),
+      home: const WidgetTree(),
     );
   }
 }
