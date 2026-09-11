@@ -1,21 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import '../auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app/settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
-class addCardPage extends StatefulWidget {
-  const addCardPage({super.key});
 
+class WatchList extends StatefulWidget {
+  const WatchList({super.key});
 
-  
+ 
 
   @override
-  State<addCardPage> createState() => _addCardPageState();
+  State<WatchList> createState() => _WatchListState();
 
 }
 
-class _addCardPageState extends State<addCardPage> {
+class _WatchListState extends State<WatchList> {
   String? errorMessage = ' ';
   String? successMessage = ' ';
   final TextEditingController _controllerID = TextEditingController();
@@ -23,8 +23,7 @@ class _addCardPageState extends State<addCardPage> {
   Widget _title(){
     return const Text('Please enter card ID');
   }
-
-  Widget _entryField(
+   Widget _entryField(
     String title,
     TextEditingController controller,
   ) {
@@ -70,7 +69,7 @@ class _addCardPageState extends State<addCardPage> {
     await FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
-      .collection('collection')
+      .collection('watchlist')
       .doc(id)
       .set({
         'addedDate' : DateTime.now().toString(),
@@ -80,7 +79,7 @@ class _addCardPageState extends State<addCardPage> {
         errorMessage = null;
         successMessage = 'Added Card';
       });
-
+  
     }, child: const Text('Submit Card ID'),);
   }
 
