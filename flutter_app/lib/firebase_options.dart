@@ -2,37 +2,16 @@
 // ignore_for_file: type=lint
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
-    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+    show defaultTargetPlatform, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
+
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
-    if (kIsWeb) {
-      return web;
-    }
+   
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
-      case TargetPlatform.iOS:
-        return ios;
-      case TargetPlatform.macOS:
-        return macos;
-      case TargetPlatform.windows:
-        return windows;
-      case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+    
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -40,47 +19,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBmdoFQfapto3nlh2X4omj6TWeDygM7W_w',
-    appId: '1:70964143073:web:3e083a67b8e66d0f0d28a0',
-    messagingSenderId: '70964143073',
-    projectId: 'pokemon-card-collection-f9e21',
-    authDomain: 'pokemon-card-collection-f9e21.firebaseapp.com',
-    storageBucket: 'pokemon-card-collection-f9e21.firebasestorage.app',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyApGwoAvDCXD7OHCk-JvgOakGr2dVJoW5o',
     appId: '1:70964143073:android:95a58dca5fd223540d28a0',
     messagingSenderId: '70964143073',
     projectId: 'pokemon-card-collection-f9e21',
-    storageBucket: 'pokemon-card-collection-f9e21.firebasestorage.app',
-  );
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDXqXCaN9mUCBkHepNeure6NFlsJyNtG08',
-    appId: '1:70964143073:ios:76721ba93e7b37070d28a0',
-    messagingSenderId: '70964143073',
-    projectId: 'pokemon-card-collection-f9e21',
-    storageBucket: 'pokemon-card-collection-f9e21.firebasestorage.app',
-    iosClientId: '70964143073-eflvo3sb8geo6asphr1sgc8beugm2vck.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flutterApp',
-  );
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDXqXCaN9mUCBkHepNeure6NFlsJyNtG08',
-    appId: '1:70964143073:ios:76721ba93e7b37070d28a0',
-    messagingSenderId: '70964143073',
-    projectId: 'pokemon-card-collection-f9e21',
-    storageBucket: 'pokemon-card-collection-f9e21.firebasestorage.app',
-    iosClientId: '70964143073-eflvo3sb8geo6asphr1sgc8beugm2vck.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flutterApp',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBmdoFQfapto3nlh2X4omj6TWeDygM7W_w',
-    appId: '1:70964143073:web:53a08d0aefa0178a0d28a0',
-    messagingSenderId: '70964143073',
-    projectId: 'pokemon-card-collection-f9e21',
-    authDomain: 'pokemon-card-collection-f9e21.firebaseapp.com',
     storageBucket: 'pokemon-card-collection-f9e21.firebasestorage.app',
   );
 }
