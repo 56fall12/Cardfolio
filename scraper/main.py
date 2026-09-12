@@ -2,7 +2,7 @@
 import getRequest
 from firebase_client import write_to_database
 from card import Card
-list_of_ids : list[str] = ['534919', '565606']
+list_of_ids : list[str] = ['534919', '565606', '610511', '246704', '550264']
 
 
 # Press the green button in the gutter to run the script.
