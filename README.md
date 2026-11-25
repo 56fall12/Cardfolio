@@ -3,6 +3,8 @@
 A Flutter app for tracking Pokémon card prices. See a card's current market price, its recent trend, and its historical lows and highs in one place.
 
 Built solo, Summer 2026.
+
+
 <img width="267" height="541" alt="add_card" src="https://github.com/user-attachments/assets/8c9dd077-8285-4101-89ba-a1174f887970" />
 <img width="266" height="559" alt="price_history" src="https://github.com/user-attachments/assets/a9c542fd-f4a4-4b4c-9fbe-377ff04e167b" />
 <img width="257" height="164" alt="collection" src="https://github.com/user-attachments/assets/79a433c9-5762-4d96-abce-542d567c023e" />
